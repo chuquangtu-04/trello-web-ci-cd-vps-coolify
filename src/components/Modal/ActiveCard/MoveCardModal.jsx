@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useSelector } from 'react-redux'
 import { selectCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
-import { fetchBoardsAPI, updateBoardDetailsAPI } from '~/apis'
+import { fetchBoardsAPI } from '~/apis'
 import { get } from '~/utils/httpRequest'
 
 function MoveCardModal({ isOpen, onClose, anchorEl, card, onMove }) {
@@ -44,6 +44,7 @@ function MoveCardModal({ isOpen, onClose, anchorEl, card, onMove }) {
       setTargetColumnId(card.columnId?.toString() || '')
       setColumns(currentBoard.columns || [])
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [card?._id, currentBoard?._id, isOpen])
 
   // 3. Khi targetBoardId thay đổi, fetch danh sách column của board đó
@@ -64,6 +65,7 @@ function MoveCardModal({ isOpen, onClose, anchorEl, card, onMove }) {
       setColumns(currentBoard.columns || [])
       setTargetColumnId(card?.columnId?.toString() || '')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetBoardId])
 
   // 4. Tính toán position khi targetColumnId thay đổi
@@ -78,6 +80,7 @@ function MoveCardModal({ isOpen, onClose, anchorEl, card, onMove }) {
       const currentIdx = availableCards.findIndex(c => c._id === card?._id)
       setTargetPosition(currentIdx !== -1 ? currentIdx : availableCards.length)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetColumnId, card?._id, availableCards.length])
 
   const handleMove = () => {

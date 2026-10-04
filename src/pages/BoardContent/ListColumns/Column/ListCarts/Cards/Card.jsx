@@ -100,36 +100,36 @@ function Card({ card }) {
 
         {/* Checkbox + Title row */}
         <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
-        {/* Checkbox ẩn/hiện và đẩy text khi hover */}
-        <Box
-          className="card-checkbox"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            opacity: card.completed ? 1 : 0,
-            maxWidth: card.completed ? '32px' : '0px', // Đóng mở chiều rộng để tạo hiệu ứng đẩy
-            overflow: 'hidden',
-            transition: 'all 0.25s ease-in-out',
-            mr: card.completed ? 1 : 0,
-            mt: -0.5,
-            ml: -0.5
-          }}
-          onClick={(e) => e.stopPropagation()} // Tránh bấm vào checkbox bị trigger luôn click của thẻ nếu cần
-        >
-          <Checkbox
-            checked={!!card.completed}
-            onChange={handleToggleComplete}
-            icon={<CheckCircleOutlineIcon />}
-            checkedIcon={<CheckCircleIcon color="success" />}
-            size="small"
-            sx={{ p: 0.5 }}
-          />
-        </Box>
+          {/* Checkbox ẩn/hiện và đẩy text khi hover */}
+          <Box
+            className="card-checkbox"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              opacity: card.completed ? 1 : 0,
+              maxWidth: card.completed ? '32px' : '0px', // Đóng mở chiều rộng để tạo hiệu ứng đẩy
+              overflow: 'hidden',
+              transition: 'all 0.25s ease-in-out',
+              mr: card.completed ? 1 : 0,
+              mt: -0.5,
+              ml: -0.5
+            }}
+            onClick={(e) => e.stopPropagation()} // Tránh bấm vào checkbox bị trigger luôn click của thẻ nếu cần
+          >
+            <Checkbox
+              checked={!!card.completed}
+              onChange={handleToggleComplete}
+              icon={<CheckCircleOutlineIcon />}
+              checkedIcon={<CheckCircleIcon color="success" />}
+              size="small"
+              sx={{ p: 0.5 }}
+            />
+          </Box>
 
-        <Typography sx={{ textDecoration: card.completed ? 'line-through' : 'none', mt: 0.2, wordBreak: 'break-word', transition: 'all 0.25s ease-in-out' }}>
-          {card.title}
-        </Typography>
+          <Typography sx={{ textDecoration: card.completed ? 'line-through' : 'none', mt: 0.2, wordBreak: 'break-word', transition: 'all 0.25s ease-in-out' }}>
+            {card.title}
+          </Typography>
         </Box>
       </CardContent>
 
@@ -140,7 +140,7 @@ function Card({ card }) {
           {!!card.dueDate && (
             <DateBadge card={card} showIcon={true} interactive={false} />
           )}
-          
+
           {/* Hàng dưới chứa các icon Comments, Attachments và Members */}
           {(!!card.comments?.length || !!card.attachments?.length || !!card.memberIds?.length) && (
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>

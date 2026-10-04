@@ -4,12 +4,10 @@ import AddCardIcon from '@mui/icons-material/AddCard'
 import CloseIcon from '@mui/icons-material/Close'
 import Cloud from '@mui/icons-material/Cloud'
 import ContentCopy from '@mui/icons-material/ContentCopy'
-import ContentCut from '@mui/icons-material/ContentCut'
-import ContentPaste from '@mui/icons-material/ContentPaste'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Button, Typography } from '@mui/material'
+import { Button } from '@mui/material'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import ListItemIcon from '@mui/material/ListItemIcon'
@@ -39,7 +37,6 @@ function Column({ column }) {
   const board = useSelector(selectCurrentActiveBoard)
   const [openNewCardFrom, setOpenNewCardFrom] = useState(false)
   const toggleOpenNewCardFrom = () => setOpenNewCardFrom(!openNewCardFrom)
-  const newCardTitle = useState('')
   const [newCardTitleValue, setNewCardTitleValue] = useState('')
   const [anchorEl, setAnchorEl] = useState(null)
   const orderedCard = column.cards || []
@@ -75,7 +72,7 @@ function Column({ column }) {
     setAnchorEl(null)
   }
 
-  const handleOpenCopyModal = (event) => {
+  const handleOpenCopyModal = () => {
     setCopyAnchorEl(anchorEl) // Dùng anchor của menu hoặc event
     handleClose()
   }
@@ -110,7 +107,7 @@ function Column({ column }) {
     }).then(async () => {
       try {
         await archiveAllCardsAPI(column._id)
-        
+
         // Optimistic update
         const newBoard = cloneDeep(board)
         const targetColumn = newBoard.columns.find(c => c._id === column._id)

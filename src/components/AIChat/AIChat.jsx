@@ -7,7 +7,6 @@ import SendIcon from '@mui/icons-material/Send'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
-import CircularProgress from '@mui/material/CircularProgress'
 import Tooltip from '@mui/material/Tooltip'
 import ReactMarkdown from 'react-markdown'
 import { callAIChatAPI, createNewCardAPI } from '~/apis'
@@ -49,7 +48,7 @@ function AIChat() {
     try {
       const res = await callAIChatAPI(board._id, message)
       const assistantMsg = { role: 'assistant', content: res.response, createdAt: new Date().toISOString() }
-      
+
       // Parse tasks if AI suggested them
       if (res.response.includes('---TASKS_JSON---')) {
         const parts = res.response.split('---TASKS_JSON---')
@@ -57,8 +56,8 @@ function AIChat() {
         try {
           const tasks = JSON.parse(parts[1].trim())
           assistantMsg.suggestedTasks = tasks
-        } catch (e) {
-          console.error('Failed to parse suggested tasks', e)
+        } catch {
+          // Ignore malformed task suggestions and keep the assistant reply visible.
         }
       }
 
@@ -91,16 +90,16 @@ function AIChat() {
           description: task.description || ''
         })
       }
-      
+
       toast.success(`Đã tạo thành công ${tasks.length} task mới!`)
       // Refresh board details to show new cards
       dispatch(fetchBoardDetailsAPI(board._id))
-      
+
       // Add feedback to chat
-      setMessages(prev => [...prev, { 
-        role: 'assistant', 
-        content: `Đã tạo thành công ${tasks.length} task mới vào danh sách đầu tiên của bạn! ✅`, 
-        createdAt: new Date().toISOString() 
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: `Đã tạo thành công ${tasks.length} task mới vào danh sách đầu tiên của bạn! ✅`,
+        createdAt: new Date().toISOString()
       }])
     } catch (error) {
       toast.error('Có lỗi xảy ra khi tạo task từ AI.')
@@ -204,7 +203,7 @@ function AIChat() {
                   }}
                 >
                   <ReactMarkdown>{msg.content}</ReactMarkdown>
-                  
+
                   {msg.suggestedTasks && (
                     <Box sx={{ mt: 2, pt: 1, borderTop: '1px dashed', borderColor: 'divider' }}>
                       <Typography variant="caption" sx={{ display: 'block', mb: 1, fontStyle: 'italic' }}>
@@ -263,9 +262,9 @@ function AIChat() {
               disabled={isLoading}
               sx={{ '& .MuiOutlinedInput-root': { borderRadius: 3 } }}
             />
-            <IconButton 
-              color="primary" 
-              onClick={handleSendMessage} 
+            <IconButton
+              color="primary"
+              onClick={handleSendMessage}
               disabled={!message.trim() || isLoading}
               sx={{ alignSelf: 'flex-end' }}
             >

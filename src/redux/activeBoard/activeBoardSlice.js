@@ -106,7 +106,7 @@ export const activeBoardSlice = createSlice({
       if (column) {
         column.cards = column.cards.filter(card => card._id !== cardId)
         column.cardOrderIds = column.cardOrderIds.filter(id => id !== cardId)
-        
+
         // Nếu column rỗng sau khi xóa, cần tạo placeholder card
         if (isEmpty(column.cards)) {
           const placeholderCard = generatePlaceholderCard(column)
@@ -184,7 +184,7 @@ export const activeBoardSlice = createSlice({
       board.columns.forEach(column => {
         if (isEmpty(column.cards)) {
           column.cards = [generatePlaceholderCard(column)],
-            column.cardOrderIds = [generatePlaceholderCard(column)._id]
+          column.cardOrderIds = [generatePlaceholderCard(column)._id]
         } else {
           // Sắp xếp thứ tự các column luôn ở đây trước khi đưa dữ liệu xuống bên dưới các component
           column.cards = mapOrder(column.cards, column.cardOrderIds, '_id')
@@ -199,14 +199,14 @@ export const activeBoardSlice = createSlice({
 
 // Actions: Là nơi dành cho các components bên dưới gọi bằng dispatch() tới nó để cập nhật lại dữ liệu thông qua reducer (chạy đồng bộ)
 // Để ý ở trên thì không thấy properties actions đâu cả, bởi vì những cái actions này đơn giản là được thằng redux tạo tự động theo tên của reducer nhé.
-export const { 
-  updateCurrentActiveBoard, 
-  updateCardInBoard, 
-  setBoardCreationDraft, 
-  updateFilters, 
-  addLabelToBoard, 
-  updateLabelInBoard, 
-  removeLabelFromBoard, 
+export const {
+  updateCurrentActiveBoard,
+  updateCardInBoard,
+  setBoardCreationDraft,
+  updateFilters,
+  addLabelToBoard,
+  updateLabelInBoard,
+  removeLabelFromBoard,
   removeCardFromBoard,
   moveCardInBoard,
   addCardToBoard,

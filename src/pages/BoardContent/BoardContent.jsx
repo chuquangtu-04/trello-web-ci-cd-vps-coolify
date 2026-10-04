@@ -53,7 +53,7 @@ function BoardContent({
   const [orderedColumnState, setOrderedColumnState] = useState([])
 
   // Cùng một thời điểm chỉ có một phần tử đang kéo (column or card)
-  const [activeDragItemId, setActiveDragItemId] = useState(null)
+  const [, setActiveDragItemId] = useState(null)
   const [activeDragItemType, setActiveDragItemType] = useState(null)
   const [activeDragItemData, setActiveDragItemData] = useState(null)
   const [oldColumnWhenDraggingCard, setOldColumnWhenDraggingCard] = useState(null)

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Popover from '@mui/material/Popover'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -41,7 +41,7 @@ function DatePickerPopover({ anchorEl, isOpen, onClose, card, onSave, onRemove }
   const [startDateStr, setStartDateStr] = useState('') // YYYY-MM-DD
   const [dueTimeStr, setDueTimeStr] = useState('') // HH:mm
   const [dueDateStr, setDueDateStr] = useState('') // YYYY-MM-DD
-  
+
   const [reminderId, setReminderId] = useState('none')
   const [customReminderValue, setCustomReminderValue] = useState(1)
   const [customReminderUnit, setCustomReminderUnit] = useState('minutes')
@@ -57,7 +57,7 @@ function DatePickerPopover({ anchorEl, isOpen, onClose, card, onSave, onRemove }
       setStartDateStr(card?.startDate ? moment(card.startDate).format('YYYY-MM-DD') : '')
       setDueDateStr(card?.dueDate ? moment(card.dueDate).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD'))
       setDueTimeStr(card?.dueTime || moment().format('HH:mm'))
-      
+
       // Khởi tạo reminder
       if (!card?.reminder) {
         setReminderId('none')
@@ -81,7 +81,7 @@ function DatePickerPopover({ anchorEl, isOpen, onClose, card, onSave, onRemove }
   const calendarDays = useMemo(() => {
     const startDay = currentMonth.clone().startOf('month').startOf('isoWeek') // Monday start
     const endDay = currentMonth.clone().endOf('month').endOf('isoWeek')
-    
+
     const days = []
     let day = startDay.clone()
     while (day.isBefore(endDay, 'day') || day.isSame(endDay, 'day')) {
@@ -194,7 +194,7 @@ function DatePickerPopover({ anchorEl, isOpen, onClose, card, onSave, onRemove }
 
           let bgColor = 'transparent'
           let color = isCurrentMonth ? 'text.primary' : 'text.disabled'
-          
+
           if (isSelectedStart || isSelectedDue) {
             bgColor = 'primary.main'
             color = 'white'
@@ -231,14 +231,14 @@ function DatePickerPopover({ anchorEl, isOpen, onClose, card, onSave, onRemove }
       {/* Inputs */}
       <Typography variant="caption" sx={{ fontWeight: 600, display: 'block', mb: 0.5 }}>Ngày bắt đầu</Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
-        <Checkbox 
-          size="small" 
-          checked={hasStartDate} 
-          onChange={(e) => setHasStartDate(e.target.checked)} 
-          sx={{ p: 0 }} 
+        <Checkbox
+          size="small"
+          checked={hasStartDate}
+          onChange={(e) => setHasStartDate(e.target.checked)}
+          sx={{ p: 0 }}
         />
-        <TextField 
-          size="small" 
+        <TextField
+          size="small"
           placeholder="DD/MM/YYYY"
           value={hasStartDate && startDateStr ? moment(startDateStr).format('DD/MM/YYYY') : ''}
           onClick={() => { setHasStartDate(true); setActiveDateField('start') }}
@@ -250,16 +250,16 @@ function DatePickerPopover({ anchorEl, isOpen, onClose, card, onSave, onRemove }
       <Typography variant="caption" sx={{ fontWeight: 600, display: 'block', mb: 0.5 }}>Ngày hết hạn</Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
         <Checkbox size="small" checked disabled sx={{ p: 0 }} />
-        <TextField 
-          size="small" 
+        <TextField
+          size="small"
           placeholder="DD/MM/YYYY"
           value={dueDateStr ? moment(dueDateStr).format('DD/MM/YYYY') : ''}
           onClick={() => setActiveDateField('due')}
           InputProps={{ readOnly: true }}
           sx={{ flex: 1, '& .MuiOutlinedInput-root': { bgcolor: activeDateField === 'due' ? 'action.selected' : 'transparent' } }}
         />
-        <TextField 
-          size="small" 
+        <TextField
+          size="small"
           type="time"
           value={dueTimeStr}
           onChange={(e) => setDueTimeStr(e.target.value)}
@@ -276,16 +276,16 @@ function DatePickerPopover({ anchorEl, isOpen, onClose, card, onSave, onRemove }
       {/* Custom Reminder Box */}
       {reminderId === 'custom' && (
         <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
-          <TextField 
-            size="small" 
+          <TextField
+            size="small"
             type="number"
             value={customReminderValue}
             onChange={e => setCustomReminderValue(e.target.value)}
             sx={{ flex: 1 }}
           />
-          <Select 
-            size="small" 
-            value={customReminderUnit} 
+          <Select
+            size="small"
+            value={customReminderUnit}
             onChange={e => setCustomReminderUnit(e.target.value)}
             sx={{ flex: 1.5 }}
           >

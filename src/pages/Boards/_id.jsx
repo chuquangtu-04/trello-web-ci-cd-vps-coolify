@@ -61,15 +61,15 @@ function Board() {
         background: board.background,
         isStarred: board.isStarred
       }
-      
+
       // Đưa board đang xem lên đầu, xóa bản ghi cũ nếu đã có
       const updatedBoards = recentBoards.filter(b => b._id !== board._id)
       updatedBoards.unshift(currentBoardInfo)
-      
+
       // Chỉ giữ tối đa 4 boards gần nhất
       localStorage.setItem('recentBoards', JSON.stringify(updatedBoards.slice(0, 4)))
     }
-  }, [board?._id, board?.title, board?.background])
+  }, [board?._id, board?.title, board?.background, board?.isStarred])
 
   const boardBackgroundStyles = useMemo(() => {
     if (!board?.background) {
@@ -210,7 +210,7 @@ function Board() {
         }}
       />
       <Box sx={{ position: 'relative', zIndex: 1, height: '100%' }}>
-      {/* Modal Active Card, check đóng/mở dựa theo isShowModalActiveCard lưu trong Redux hay không thì mới render. Mỗi thời điểm chỉ tồn tại một cái Modal Card đang Active */}
+        {/* Modal Active Card, check đóng/mở dựa theo isShowModalActiveCard lưu trong Redux hay không thì mới render. Mỗi thời điểm chỉ tồn tại một cái Modal Card đang Active */}
         <ActiveCard/>
 
         {/* Các thành phần còn lại của boards details */}

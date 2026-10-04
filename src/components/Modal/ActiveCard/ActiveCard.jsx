@@ -9,17 +9,11 @@ import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined'
-import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined'
 import WatchLaterOutlinedIcon from '@mui/icons-material/WatchLaterOutlined'
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined'
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined'
-import AutoFixHighOutlinedIcon from '@mui/icons-material/AutoFixHighOutlined'
-import AspectRatioOutlinedIcon from '@mui/icons-material/AspectRatioOutlined'
-import AddToDriveOutlinedIcon from '@mui/icons-material/AddToDriveOutlined'
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined'
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined'
-import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined'
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined'
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined'
 import SubjectRoundedIcon from '@mui/icons-material/SubjectRounded'
@@ -151,6 +145,7 @@ function ActiveCard() {
         socketIoInstance.off('BE_USER_STOPPED_TYPING_COMMENT', onUserStoppedTyping)
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCard?._id, currentUser._id])
 
   // Func dùng chung cho các trường hợp update card title, description, cover, comment...
@@ -266,8 +261,8 @@ function ActiveCard() {
       dispatch(addLabelToBoard(result.labels))
       // Tự động gán label vừa tạo vào card
       await onToggleLabel(result.label.id)
-    } catch (err) {
-      // error handled by axios interceptor
+    } catch {
+      // Error handled by axios interceptor.
     }
   }
 
@@ -275,7 +270,9 @@ function ActiveCard() {
     try {
       const result = await updateLabelAPI(activeBoard._id, labelId, data)
       dispatch(updateLabelInBoard(result.labels))
-    } catch (err) { }
+    } catch {
+      // Error handled by axios interceptor.
+    }
   }
 
   const onDeleteLabel = async (labelId) => {
@@ -287,7 +284,9 @@ function ActiveCard() {
         dispatch(updateCurrentActiveCard(updated))
         dispatch(updateCardInBoard(updated))
       }
-    } catch (err) { }
+    } catch {
+      // Error handled by axios interceptor.
+    }
   }
 
   // ============================================================
@@ -345,7 +344,7 @@ function ActiveCard() {
     }).then(async () => {
       // Optimistic update: Xóa card khỏi board state ngay lập tức
       dispatch(removeCardFromBoard({ cardId: activeCard._id, columnId: activeCard.columnId }))
-      
+
       // Đóng modal card detail
       handleCloseModal()
 

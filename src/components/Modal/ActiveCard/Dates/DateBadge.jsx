@@ -92,7 +92,7 @@ function DateBadge({ card, showIcon = true, interactive = false, onToggleComplet
       {!interactive && showIcon && (
         <AccessTimeIcon sx={{ fontSize: 14, mr: 0.5, color: 'inherit' }} />
       )}
-      
+
       <Typography sx={{ fontSize: interactive ? '14px' : '12px', fontWeight: interactive ? 500 : 400, color: interactive ? 'text.primary' : 'inherit' }}>
         {dateText}
       </Typography>

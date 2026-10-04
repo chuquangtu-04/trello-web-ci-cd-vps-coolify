@@ -57,13 +57,13 @@ const theme = extendTheme({
           // Some CSS
           textTransform: 'none',
           borderWidth: '1px',
-          '&:hover': { borderWidth: '1.5px'}
+          '&:hover': { borderWidth: '1.5px' }
         }
       }
     },
     MuiFormLabel: {
       styleOverrides: {
-        root: ({ theme }) => ({
+        root: () => ({
           // color: theme.palette.primary.main,
           fontSize: '0.875rem'
 
@@ -90,7 +90,7 @@ const theme = extendTheme({
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        root: ({ theme }) => {
+        root: () => {
           return {
             // color: theme.palette.primary.main,
             fontSize: '0.875rem',

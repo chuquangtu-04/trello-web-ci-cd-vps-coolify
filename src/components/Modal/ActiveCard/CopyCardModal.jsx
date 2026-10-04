@@ -23,7 +23,7 @@ function CopyCardModal({ isOpen, onClose, anchorEl, card, onCopy }) {
   const [title, setTitle] = useState('')
   const [targetColumnId, setTargetColumnId] = useState('')
   const [targetPosition, setTargetPosition] = useState(0)
-  
+
   const [options, setOptions] = useState({
     copyLabels: true,
     copyMembers: true,
@@ -36,11 +36,12 @@ function CopyCardModal({ isOpen, onClose, anchorEl, card, onCopy }) {
       setTitle(`${card.title} (copy)`)
       setTargetColumnId(card.columnId?.toString() || '')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [card?._id, isOpen])
 
   const selectedColumn = columns.find(c => c._id === targetColumnId)
   const availableCards = selectedColumn?.cards?.filter(c => !c.FE_placeholderCard) || []
-  
+
   // Khi copy, số lượng vị trí luôn là count + 1
   const positionsCount = availableCards.length + 1
   const positions = Array.from({ length: positionsCount }, (_, i) => i + 1)
@@ -51,6 +52,7 @@ function CopyCardModal({ isOpen, onClose, anchorEl, card, onCopy }) {
       const currentIdx = availableCards.findIndex(c => c._id === card?._id)
       setTargetPosition(currentIdx !== -1 ? currentIdx + 1 : availableCards.length)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetColumnId, card?._id, isOpen, availableCards.length])
 
   const handleOptionChange = (name) => (event) => {

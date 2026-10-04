@@ -7,7 +7,6 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl'
-import VpnLockIcon from '@mui/icons-material/VpnLock'
 import PublicIcon from '@mui/icons-material/Public'
 import LockIcon from '@mui/icons-material/Lock'
 import Tooltip from '@mui/material/Tooltip'
@@ -173,7 +172,7 @@ function VisibilitySelector({ board }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Make Board Public?"}
+          {'Make Board Public?'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

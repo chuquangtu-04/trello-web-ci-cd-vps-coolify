@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { fetchBoardDetailsSoftColumnAPI, hardDeleteColumnAPI, restoreColumnsAPI, getArchivedCardsAPI, updateCardDetailAPI, deleteCardAPI } from '~/apis'
-import { selectCurrentActiveBoard, updateCurrentActiveBoard, updateCardInBoard } from '~/redux/activeBoard/activeBoardSlice'
+import { selectCurrentActiveBoard, updateCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
 
 const MENU_STYLE = {
   color: 'primary.main',
@@ -53,7 +53,7 @@ function Archive() {
     }, 200) // đợi backend cập nhật xong
 
     return () => clearTimeout(timeout)
-  }, [boardFromRedux.columns])
+  }, [boardFromRedux?._id, boardFromRedux.columns])
 
   // Backup trước khi lưu dữ liệu mới vào localStorage
   useEffect(() => {
@@ -140,7 +140,7 @@ function Archive() {
     try {
       // API call to restore card
       const restoredCard = await updateCardDetailAPI(card._id, { isArchived: false, archivedAt: null })
-      
+
       // Remove from archive list
       setCardArchive(prev => prev.filter(c => c._id !== card._id))
 
@@ -243,7 +243,7 @@ function Archive() {
               }
             </Box>
             {
-              showArchive ? 
+              showArchive ?
                 <Box sx={{ maxHeight: '300px', overflowX: 'auto', pr: '7px' }}>
                   {
                     cardArchive.length === 0 &&
@@ -257,7 +257,7 @@ function Archive() {
                       borderRadius: '8px'
                     }}>
                     Không có thẻ nào
-                    </Box> 
+                    </Box>
                   }
                   {
                     filteredCards.map((card, index) => (
@@ -297,7 +297,7 @@ function Archive() {
                     ))
                   }
                 </Box>
-              :
+                :
                 <Box sx={{ maxHeight: '300px', overflowX: 'auto', pr: '7px' }}>
                   {
                     columnArchive.length === 0 &&

@@ -16,13 +16,13 @@ import { useConfirm } from 'material-ui-confirm'
 import { cloneDeep, isEmpty } from 'lodash'
 
 import { selectCurrentActiveBoard, updateCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
-import { 
-  fetchBoardDetailsSoftColumnAPI, 
-  hardDeleteColumnAPI, 
-  restoreColumnsAPI, 
-  getArchivedCardsAPI, 
-  updateCardDetailAPI, 
-  deleteCardAPI 
+import {
+  fetchBoardDetailsSoftColumnAPI,
+  hardDeleteColumnAPI,
+  restoreColumnsAPI,
+  getArchivedCardsAPI,
+  updateCardDetailAPI,
+  deleteCardAPI
 } from '~/apis'
 
 function ArchivedItemsModal({ isOpen, onClose, onBack, anchorEl }) {
@@ -53,7 +53,7 @@ function ArchivedItemsModal({ isOpen, onClose, onBack, anchorEl }) {
 
     newBoard.columns.splice(oldColumnIndex, 0, column)
     dispatch(updateCurrentActiveBoard(newBoard))
-    
+
     restoreColumnsAPI(column._id).then((res) => {
       toast.success(res.message)
       setColumnArchive(prev => prev.filter(c => c._id !== column._id))
@@ -139,8 +139,8 @@ function ArchivedItemsModal({ isOpen, onClose, onBack, anchorEl }) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <Button 
-            variant="contained" 
+          <Button
+            variant="contained"
             size="small"
             onClick={() => setShowCards(!showCards)}
             sx={{ minWidth: '100px', textTransform: 'none' }}

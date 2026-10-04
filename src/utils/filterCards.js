@@ -32,7 +32,7 @@ export const filterCards = (cards, filters, currentUser) => {
       if (specificUserIds.length > 0) {
         memberMatch = memberMatch || specificUserIds.some(userId => card.memberIds?.includes(userId))
       }
-      
+
       isMatch = isMatch && memberMatch
     }
 
