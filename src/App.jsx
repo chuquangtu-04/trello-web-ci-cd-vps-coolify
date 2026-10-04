@@ -16,6 +16,7 @@ import Boards from './pages/Boards'
  * Một bài hướng dẫn khá đầy đủ:
  * https://www.robinwieruch.de/react-router-private-routes/
  */
+
 const ProtectedRouter = ({ user }) => {
   if (!user) return <Navigate to='/login' replace={true}/>
   return <Outlet/>
