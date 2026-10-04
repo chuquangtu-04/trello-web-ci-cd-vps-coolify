@@ -50,7 +50,7 @@ function CardAttachmentSection({ cardAttachments, onDeleteCardAttachment }) {
               <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                 {moment(attachment.addedAt).format('MMM D, YYYY [at] h:mm A')}
               </Typography>
-              <Link 
+              <Link
                 component="button"
                 variant="caption"
                 underline="always"

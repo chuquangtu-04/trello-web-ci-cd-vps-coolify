@@ -35,7 +35,7 @@ export function HomeView({ setActiveSidebar }) {
         p: 3,
         borderRadius: 2,
         bgcolor: (theme) => theme.palette.mode === 'dark' ? '#1A2027' : 'primary.50',
-        color: (theme) => theme.palette.mode === 'dark' ? 'white' : 'primary.main',
+        color: (theme) => theme.palette.mode === 'dark' ? 'white' : 'primary.main'
       }}>
         <Avatar
           src={currentUser?.avatar}
@@ -82,7 +82,7 @@ export function HomeView({ setActiveSidebar }) {
 
       {recentBoards.length === 0 ? (
         <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-          You haven't viewed any boards recently.
+          You haven&apos;t viewed any boards recently.
         </Typography>
       ) : (
         <Grid container spacing={2}>

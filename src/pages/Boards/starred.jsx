@@ -44,7 +44,7 @@ export function StarredView() {
 
       {starredBoards.length === 0 ? (
         <Typography variant="body1" color="text.secondary" sx={{ fontStyle: 'italic', mt: 2 }}>
-          You haven't starred any boards yet. Star a board to see it here!
+          You haven&apos;t starred any boards yet. Star a board to see it here!
         </Typography>
       ) : (
         <Grid container spacing={2}>

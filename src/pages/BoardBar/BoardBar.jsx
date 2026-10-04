@@ -7,7 +7,6 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import { Tooltip, IconButton } from '@mui/material'
 import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
-import { capitalizeFirstLetter } from '~/utils/formatters'
 import BoardUserGroup from './BoardUserGroup'
 import InviteBoardUser from './InviteBoardUser'
 import FilterPanel from './FilterPanel'
@@ -41,7 +40,7 @@ const MENU_STYLE = {
 function BoardBar({ board }) {
   const dispatch = useDispatch()
   const filters = useSelector(selectFilters)
-  
+
   // State quản lý Filter Popover
   const [filterAnchorEl, setFilterAnchorEl] = useState(null)
   const isOpenFilter = Boolean(filterAnchorEl)
@@ -121,7 +120,7 @@ function BoardBar({ board }) {
     // Optimistic update
     dispatch(toggleBoardStar(newStarState))
     dispatch(updateUserStarredBoards({ boardId: board._id, isStarred: newStarState }))
-    
+
     toggleBoardStarAPI(board._id).catch(() => {
       // Rollback
       dispatch(toggleBoardStar(!newStarState))
@@ -194,7 +193,7 @@ function BoardBar({ board }) {
             {board?.isStarred ? <StarIcon fontSize="small" /> : <StarBorderIcon fontSize="small" />}
           </IconButton>
         </Tooltip>
-        
+
         <VisibilitySelector board={board} />
 
         <Chip sx={MENU_STYLE} icon={<BoltIcon />} label="Automatic" onClick={() => { }} />
@@ -204,24 +203,24 @@ function BoardBar({ board }) {
         </Badge>
         <FilterPanel anchorEl={filterAnchorEl} isOpen={isOpenFilter} onClose={handleCloseFilter} />
 
-        <Chip 
-          sx={{ ...MENU_STYLE, minWidth: '40px', '& .MuiChip-label': { display: 'none' } }} 
-          icon={<MoreHorizIcon />} 
-          onClick={handleOpenBoardMenu} 
+        <Chip
+          sx={{ ...MENU_STYLE, minWidth: '40px', '& .MuiChip-label': { display: 'none' } }}
+          icon={<MoreHorizIcon />}
+          onClick={handleOpenBoardMenu}
         />
 
         {/* Popovers */}
-        <BoardMenuModal 
-          isOpen={showBoardMenu} 
+        <BoardMenuModal
+          isOpen={showBoardMenu}
           anchorEl={menuAnchorEl}
-          onClose={handleCloseBoardMenu} 
+          onClose={handleCloseBoardMenu}
           onOpenArchived={handleOpenArchived}
           onOpenChangeBackground={handleOpenChangeBackground}
         />
-        <ArchivedItemsModal 
-          isOpen={showArchived} 
+        <ArchivedItemsModal
+          isOpen={showArchived}
           anchorEl={menuAnchorEl}
-          onClose={handleCloseArchived} 
+          onClose={handleCloseArchived}
           onBack={handleBackToMenu}
         />
         <ChangeBackgroundModal

@@ -39,12 +39,12 @@ function BoardMenuModal({ isOpen, onClose, onOpenArchived, onOpenChangeBackgroun
           startIcon={<ArchiveIcon />}
           endIcon={<ChevronRightIcon sx={{ ml: 'auto' }} />}
           onClick={onOpenArchived}
-          sx={{ 
-            justifyContent: 'flex-start', 
-            py: 1.2, 
-            color: 'text.primary', 
+          sx={{
+            justifyContent: 'flex-start',
+            py: 1.2,
+            color: 'text.primary',
             textTransform: 'none',
-            '&:hover': { bgcolor: 'action.hover' } 
+            '&:hover': { bgcolor: 'action.hover' }
           }}
         >
           Mục đã lưu trữ
@@ -53,12 +53,12 @@ function BoardMenuModal({ isOpen, onClose, onOpenArchived, onOpenChangeBackgroun
         <Button
           fullWidth
           startIcon={<SettingsIcon />}
-          sx={{ 
-            justifyContent: 'flex-start', 
-            py: 1.2, 
-            color: 'text.primary', 
+          sx={{
+            justifyContent: 'flex-start',
+            py: 1.2,
+            color: 'text.primary',
             textTransform: 'none',
-            '&:hover': { bgcolor: 'action.hover' } 
+            '&:hover': { bgcolor: 'action.hover' }
           }}
           disabled
         >
@@ -68,12 +68,12 @@ function BoardMenuModal({ isOpen, onClose, onOpenArchived, onOpenChangeBackgroun
         <Button
           fullWidth
           startIcon={<HistoryIcon />}
-          sx={{ 
-            justifyContent: 'flex-start', 
-            py: 1.2, 
-            color: 'text.primary', 
+          sx={{
+            justifyContent: 'flex-start',
+            py: 1.2,
+            color: 'text.primary',
             textTransform: 'none',
-            '&:hover': { bgcolor: 'action.hover' } 
+            '&:hover': { bgcolor: 'action.hover' }
           }}
           disabled
         >
@@ -87,12 +87,12 @@ function BoardMenuModal({ isOpen, onClose, onOpenArchived, onOpenChangeBackgroun
           startIcon={<AutoFixHighOutlinedIcon />}
           endIcon={<ChevronRightIcon sx={{ ml: 'auto' }} />}
           onClick={onOpenChangeBackground}
-          sx={{ 
-            justifyContent: 'flex-start', 
-            py: 1.2, 
-            color: 'text.primary', 
+          sx={{
+            justifyContent: 'flex-start',
+            py: 1.2,
+            color: 'text.primary',
             textTransform: 'none',
-            '&:hover': { bgcolor: 'action.hover' } 
+            '&:hover': { bgcolor: 'action.hover' }
           }}
         >
           Thay đổi hình nền

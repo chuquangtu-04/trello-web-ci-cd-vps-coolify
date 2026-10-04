@@ -12,7 +12,7 @@ import { socketIoInstance } from '~/socketClient'
 
 const CommentBubble = styled(Box)(({ theme, isowner }) => ({
   display: 'block',
-  backgroundColor: isowner === 'true' 
+  backgroundColor: isowner === 'true'
     ? (theme.palette.mode === 'dark' ? '#004a99' : '#e7f3ff')
     : (theme.palette.mode === 'dark' ? '#33485D' : '#f0f2f5'),
   padding: '10px 14px',
@@ -132,17 +132,17 @@ function CardActivitySection({ cardId, cardComments = [], OnAddCardComment, typi
             <Typography variant="body2">No comments yet. Be the first to say something!</Typography>
           </Box>
         )}
-        
+
         {cardComments.map((item, index) => {
           const isOwner = item.userId === currentUser._id
           return (
-            <Box 
-              sx={{ 
-                display: 'flex', 
-                gap: 1.5, 
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 1.5,
                 width: '100%',
                 flexDirection: isOwner ? 'row-reverse' : 'row'
-              }} 
+              }}
               key={index}
             >
               <Tooltip title={item.userDisplayName}>
@@ -152,7 +152,7 @@ function CardActivitySection({ cardId, cardComments = [], OnAddCardComment, typi
                   src={item.userAvatar}
                 />
               </Tooltip>
-              
+
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: isOwner ? 'flex-end' : 'flex-start', maxWidth: '80%' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                   <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
@@ -162,7 +162,7 @@ function CardActivitySection({ cardId, cardComments = [], OnAddCardComment, typi
                     {moment(item.commentedAt).fromNow()}
                   </Typography>
                 </Box>
-                
+
                 <CommentBubble isowner={isOwner.toString()}>
                   {item.content}
                 </CommentBubble>
